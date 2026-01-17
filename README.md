@@ -1,37 +1,29 @@
-# 📊 Projeto Prático em Dados com Python, SQL, Git e GitHub
+# 📊 Case BackOffice — KPIs de Depósitos e Saques
 
-Este projeto foi desenvolvido como um **projeto prático de portfólio** com foco em **análise de dados**, utilizando **Python**, **SQL (SQLite)** e versionamento com **Git/GitHub**.
+## 💡 Sobre o Projeto
 
-O objetivo é simular um cenário real de **BackOffice**, analisando transações de **depósitos e saques**, seus status e métricas operacionais (aprovação, tempo de processamento, rejeições, etc.).
+Este é um **case prático de análise de dados** aplicado ao cenário de BackOffice financeiro, focado em transações de **depósitos** e **saques**. O objetivo principal é demonstrar um pipeline completo de dados — desde a geração e armazenamento até métricas e visualizações — usando **Python**, **SQLite** e **SQL**.
 
----
-
-## 🎯 Objetivo do Projeto
-
-Construir um pipeline completo de dados, desde a geração do dataset até análises finais, respondendo perguntas como:
-
-- Qual o volume total de **depósitos** e **saques**?
-- Qual a **taxa de aprovação** das transações?
-- Qual o **tempo médio** de processamento?
-- Quais os principais **motivos de rejeição** (principalmente em saques)?
-- Como os valores se comportam ao longo do tempo?
+O projeto executa um fluxo de ETL (Extract, Transform, Load), gera **KPIs**, produz **relatórios em CSV** e salva **gráficos** automaticamente para facilitar a interpretação dos dados.
 
 ---
 
-## 🧰 Tecnologias Utilizadas
+## 🧩 Tecnologias
 
-- **Python 3**
-- **Pandas**
-- **SQLite (SQL)**
-- **Matplotlib**
-- **Git / GitHub**
+| Tecnologia | Finalidade |
+|------------|-------------|
+| Python 3 | Linguagem principal |
+| pandas | Manipulação de dados |
+| SQLite | Banco de dados leve |
+| SQL | Consultas estruturadas |
+| matplotlib | Visualizações (gráficos) |
 
 ---
 
 ## 📁 Estrutura do Projeto
 
 ```text
-projeto-dados-python-sql/
+Case-BackOffice-KPIs/
 │
 ├── data/
 │   ├── raw/                 # dados brutos (CSV)
@@ -51,111 +43,146 @@ projeto-dados-python-sql/
 │   ├── kpis_por_tipo.csv    # KPIs por tipo (deposit/withdraw)
 │   └── graficos/            # gráficos gerados automaticamente
 │
-├── notebooks/               # espaço para análises em notebook (opcional)
-├── requirements.txt
-└── README.md
-´´´
+├── requirements.txt         # dependências
+└── README.md                # documentação
+```
 
 ---
 
-## 📌 Como Rodar o Projeto
+## 📌 Funcionalidades
 
-### 1) Instalar dependências
+### 🛠️ ETL e Preparação de Dados
+- Geração de um dataset sintético de transações (`gerar_dados.py`)
+- Criação de banco SQLite e carregamento das transações (`carregar_sqlite.py`)
+- Estrutura de tabelas com índices
+
+### 📊 Análise Automática
+- Cálculo de métricas principais (KPIs)
+- Produção de relatórios em CSV
+- Geração de gráficos salvos em arquivos
+
+### 📈 Consultas SQL
+- Total por tipo (deposit/withdraw)
+- Taxa de aprovação por tipo
+- Série temporal por dia
+- Tempo médio de processamento
+- Top motivos de rejeição
+
+---
+
+## 📦 Como Executar
+
+### 1) Instalar Dependências
+Instale as bibliotecas necessárias:
 
 ```bash
 pip install pandas matplotlib
-Se você quiser, pode criar um requirements.txt também.
+```
 
-2) Gerar o dataset (CSV)
-bash
-Copiar código
+---
+
+### 2) Gerar Dataset
+
+```bash
 python src/gerar_dados.py
-Isso irá criar:
+```
 
-📄 data/raw/transactions_raw.csv
+O arquivo será salvo em:
+📄 `data/raw/transactions_raw.csv`
 
-3) Criar e popular o banco SQLite
-bash
-Copiar código
+---
+
+### 3) Criar e Popular Banco
+
+```bash
 python src/carregar_sqlite.py
-Isso irá criar:
+```
 
-🗄️ data/processed/backoffice.db
+Banco criado em:
+🗄️ `data/processed/backoffice.db`
 
-4) Rodar análise e gerar relatórios
-bash
-Copiar código
+---
+
+### 4) Rodar Análise Completa
+
+```bash
 python src/analise.py
-Isso irá gerar automaticamente:
+```
 
-📄 outputs/kpis_resumo.csv
-📄 outputs/kpis_por_tipo.csv
-📊 outputs/graficos/*.png
+Saídas geradas automaticamente:
 
-🗄️ Consultas SQL (SQL/SQLite)
-O arquivo sql/queries.sql contém consultas úteis como:
+📄 `outputs/kpis_resumo.csv`  
+📄 `outputs/kpis_por_tipo.csv`  
+📊 `outputs/graficos/*.png`
 
-Total depositado vs total sacado
+---
 
-Taxa de aprovação por tipo
+## 📊 Resultados Obtidos
 
-Série temporal por dia
+### 📈 KPIs
 
-Tempo médio de processamento
+- **Total de transações**
+- **Valor total movimentado**
+- **Taxa de aprovação (%)**
+- **Tempo médio de processamento**
+- **Top motivos de rejeição**
 
-Top motivos de rejeição em saques
+Arquivos de KPI:
+- `kpis_resumo.csv`
+- `kpis_por_tipo.csv`
 
-Você pode executar as queries usando ferramentas como:
+---
 
-DB Browser for SQLite
+## 📉 Visualizações
 
-extensão SQLite no VSCode
+As visualizações geradas são gravadas em:
 
-terminal com sqlite3 (se tiver instalado)
+📁 `outputs/graficos/`
 
-📈 KPIs Gerados
-Exemplos de métricas calculadas:
+Você encontrará:
 
-Total de transações
+| Gráfico | Descrição |
+|---------|-----------|
+| `total_por_dia.png` | Volume por dia (deposit x withdraw) |
+| `approval_por_tipo.png` | Taxa de aprovação por tipo |
+| `top_rejeicoes_withdraw.png` | Top motivos de rejeição em saques |
 
-Valor total movimentado
+> 💡 **Dica:** abra os PNGs no VSCode ou visualizador de imagens para explorar os gráficos.
 
-Taxa de aprovação (%)
+---
 
-Tempo médio de processamento (min)
+## 🛠️ SQL Queries
 
-P95 do tempo de processamento
+O arquivo `sql/queries.sql` contém consultas como:
 
-Top motivos de rejeição
+- Total por tipo
+- Taxa de aprovação por tipo
+- Série temporal por dia
+- Tempo médio de processamento
+- Top motivos de rejeição
 
-📊 Gráficos Gerados
-Após rodar src/analise.py, os gráficos são salvos em:
+Você pode executá-las com:
+- DB Browser for SQLite
+- Extensão SQLite no VSCode
+- CLI do sqlite3
 
-📁 outputs/graficos/
+---
 
-Incluindo:
+## 🌟 Próximas Evoluções
 
-Total por dia (deposit x withdraw)
+Este projeto pode ser estendido com:
 
-Taxa de aprovação por tipo
+- Dashboard interativo (Power BI / Streamlit)
+- Previsão de rejeições (Machine Learning)
+- API para consulta dos KPIs (FastAPI)
+- Testes automatizados (pytest)
+- Automatização de ETL programada
 
-Top 10 motivos de rejeição (withdraw)
+---
 
-🚀 Próximos Passos (Evoluções do Projeto)
-Melhorias possíveis para versão 2.0:
+## 👤 Autor
 
-Criar um dashboard no Power BI
+**Walter Santos**  
+📌 GitHub: https://github.com/WalterSantos08
 
-Criar um modelo de previsão de rejeição (Machine Learning)
-
-Criar uma API para consulta dos dados (FastAPI ou Spring Boot)
-
-Adicionar testes automatizados (pytest)
-
-Automatizar pipeline (ETL) com agendamento
-
-👤 Autor
-Walter Santos
-Projeto desenvolvido para estudo e portfólio em Dados / Análise / BackOffice.
-
-Copiar código
+Desenvolvido como projeto de portfólio em análise de dados e engenharia de dados.
