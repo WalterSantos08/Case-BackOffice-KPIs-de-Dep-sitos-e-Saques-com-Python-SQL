@@ -30,32 +30,31 @@ Construir um pipeline completo de dados, desde a geração do dataset até anál
 
 ## 📁 Estrutura do Projeto
 
+```text
 projeto-dados-python-sql/
 │
 ├── data/
-│ ├── raw/ # dados brutos (CSV)
-│ └── processed/ # banco SQLite final
+│   ├── raw/                 # dados brutos (CSV)
+│   └── processed/           # banco SQLite final
 │
 ├── sql/
-│ ├── create_tables.sql # criação de tabelas e índices
-│ └── queries.sql # consultas SQL para análise
+│   ├── create_tables.sql    # criação de tabelas e índices
+│   └── queries.sql          # consultas SQL para análise
 │
 ├── src/
-│ ├── gerar_dados.py # gera o dataset em CSV
-│ ├── carregar_sqlite.py # carrega CSV no banco SQLite
-│ └── analise.py # KPIs + gráficos + outputs
+│   ├── gerar_dados.py       # gera o dataset em CSV
+│   ├── carregar_sqlite.py   # carrega CSV no banco SQLite
+│   └── analise.py           # KPIs + gráficos + outputs
 │
 ├── outputs/
-│ ├── kpis_resumo.csv # KPIs gerais
-│ ├── kpis_por_tipo.csv # KPIs por tipo (deposit/withdraw)
-│ └── graficos/ # gráficos gerados automaticamente
+│   ├── kpis_resumo.csv      # KPIs gerais
+│   ├── kpis_por_tipo.csv    # KPIs por tipo (deposit/withdraw)
+│   └── graficos/            # gráficos gerados automaticamente
 │
-├── notebooks/ # espaço para análises em notebook (opcional)
+├── notebooks/               # espaço para análises em notebook (opcional)
 ├── requirements.txt
 └── README.md
-
-yaml
-Copiar código
+´´´
 
 ---
 
